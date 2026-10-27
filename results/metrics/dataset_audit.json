@@ -1,0 +1,71 @@
+{
+  "chnci": {
+    "dataset": "CHNCI",
+    "n_rows": 225480,
+    "n_incidents": 95,
+    "incidents_by_label": {
+      "0": 48,
+      "1": 47
+    },
+    "platform_counts": {
+      "dy": 155658,
+      "wb": 42218,
+      "bili": 17155,
+      "xhs": 10449
+    },
+    "missing_values": {
+      "timestamp": 0,
+      "platform": 0,
+      "content": 4,
+      "label1": 6,
+      "label2": 4,
+      "label3": 341
+    },
+    "unparseable_timestamps": 0,
+    "duplicate_rows_incident_content": 19978,
+    "invalid_label_rows": 346,
+    "time_range": [
+      "2024-07-05 12:52:00",
+      "2024-10-24 01:22:00"
+    ],
+    "y_majority_dist": {
+      "0.0": 149685,
+      "1.0": 75449,
+      "nan": 346
+    },
+    "high_conf_rows": 172081,
+    "cb_rate_by_incident_label": {
+      "non_cb": 0.1078,
+      "cb": 0.3876
+    },
+    "rows_per_incident_median": 1318,
+    "span_hours_median": 336.22
+  },
+  "swsr": {
+    "dataset": "SWSR",
+    "n_rows": 8969,
+    "label_dist": {
+      "0": 5876,
+      "1": 3093
+    },
+    "category_dist": {
+      "nan": 5876,
+      "MA": 1994,
+      "SCB": 974,
+      "SO": 85,
+      "SA": 40
+    },
+    "unparseable_timestamps": 200,
+    "time_range": [
+      "2012-04-06 05:11:00",
+      "2020-06-26 18:03:00"
+    ],
+    "n_source_weibos": 1527,
+    "comments_per_weibo_median": 2.0,
+    "duplicate_text_rows": 6
+  },
+  "compatibility_notes": [
+    "Different label schemes: CHNCI=cyberbullying (3-strategy majority vote), SWSR=sexism (single expert label). Not mergeable without a justified mapping; used as separate experiments + cross-domain transfer evaluation.",
+    "SWSR threads have a median of 2 comments -> unsuitable for temporal surge analysis; CHNCI (minute-level timestamps, continuous per-incident coverage) is the temporal dataset."
+  ]
+}

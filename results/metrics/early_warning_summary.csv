@@ -1,0 +1,3 @@
+method,cb_incidents_alarmed,cb_detected_after_onset,median_lead_to_peak_h,median_detection_delay_h,non_cb_incidents_with_fa,false_alarms_total,fa_per_100_active_hours
+rolling_mean_2sd,35/47,26/47,-6.0,22.0,21/48,29,2.12
+cusum_delta0.5_h4,36/47,36/47,-3.0,14.0,21/48,163,2.04

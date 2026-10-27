@@ -1,0 +1,9 @@
+=== CHNCI audit ===
+rows=225480  incidents=95 (CB=47, non-CB=48)
+time range: 2024-07-05 12:52:00 -> 2024-10-24 01:22:00
+unparseable timestamps: 0  duplicates: 19978  invalid label rows: 346 (reported, not silently dropped)
+hostile rate: CB incidents 0.3876 vs non-CB 0.1078
+
+=== SWSR audit ===
+rows=8969  sexist=3093 non-sexist=5876  time range 2012-04-06 05:11:00 -> 2020-06-26 18:03:00
+unparseable timestamps: 200

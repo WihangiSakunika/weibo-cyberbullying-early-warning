@@ -1,0 +1,30 @@
+# --- Datasets ---
+# CHNCI carries NO license and must NOT be redistributed -> keep out of git.
+data/raw/chnci/
+# Regenerated artifacts
+data/processed/
+models/
+
+# --- Results we DO commit: metrics tables, classification reports, figures ---
+# (results/ is intentionally tracked; nothing below is excluded)
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.venv/
+venv/
+.ipynb_checkpoints/
+
+# --- Secrets / credentials ---
+.env
+*.key
+credentials*.json
+
+# --- OS / IDE ---
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/

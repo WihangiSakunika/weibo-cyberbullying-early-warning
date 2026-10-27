@@ -1,0 +1,81 @@
+# Central experiment configuration for the Weibo cyberbullying early-warning pipeline.
+# All random seeds, split ratios, detector parameters and paths live here so that
+# every experiment is reproducible from a single file.
+
+seed: 42
+
+paths:
+  raw_data_dir: "data/raw"
+  processed_dir: "data/processed"
+  results_dir: "results"
+  metrics_dir: "results/metrics"
+  figures_dir: "results/figures"
+  models_dir: "models"
+
+chnci:
+  # CHNCI carries NO dataset license: it may be used with citation
+  # (Zhu, Zou & Wu 2025, arXiv:2505.20654) but must NOT be redistributed.
+  # It is therefore NOT committed to this repository - obtain it with:
+  #   python scripts/download_data.py --dataset chnci
+  raw_dir: "data/raw/chnci"
+  timestamp_format: "%Y/%m/%d %H:%M"   # naive local time (Beijing, UTC+8 assumed)
+  source_url: "https://github.com/zhuyiYZU/CHNCI"
+
+swsr:
+  # MIT License (c) 2022 Aiqi Jiang - redistribution permitted; the files are
+  # committed under data/raw/swsr/ together with their LICENSE copy.
+  comments_file: "data/raw/swsr/SexComment.csv"
+  weibo_file: "data/raw/swsr/SexWeibo.csv"
+  timestamp_format: "%d/%m/%Y %H:%M"   # naive local time, platform采集时区未注明
+  source_url: "https://github.com/aggiejiang/SWSR"
+
+labels:
+  # CHNCI: comment-level cyberbullying = majority vote of the three
+  # annotation strategies (label1/label2/label3, 0/1 each).
+  majority_threshold: 2          # >= 2 of 3 votes == 1  -> hostile
+  high_conf_rule: "unanimous"    # all three agree -> high-confidence subset
+
+splits:
+  # Incident-level (group) splitting prevents leakage of incident-specific
+  # vocabulary between train and test.
+  scheme: "group_by_incident"
+  train_frac: 0.70
+  val_frac: 0.15
+  test_frac: 0.15
+
+models:
+  tfidf_lr:
+    ngram_range: [1, 2]
+    analyzer: "char"
+    min_df: 3
+    max_features: 200000
+    sublinear_tf: true
+    C: 4.0
+    class_weight: "balanced"
+  tfidf_svm:
+    ngram_range: [1, 2]
+    analyzer: "char"
+    min_df: 3
+    max_features: 200000
+    sublinear_tf: true
+    C: 1.0
+    class_weight: "balanced"
+  # transformers/bert_baseline: PLANNED, not yet run in this repository.
+  # See README "Completed vs. planned experiments".
+
+temporal:
+  window: "1h"            # hourly aggregation window
+  min_volume: 5           # hours with < 5 comments are masked out of rate metrics
+
+detectors:
+  rolling_threshold:
+    baseline_window: 12   # trailing observations used for mean/std
+    n_sigma: 2.0
+  cusum:
+    delta: 0.5            # drift allowance, in units of baseline sigma
+    h: 4.0                # alarm threshold, in units of baseline sigma
+    baseline_points: 12
+
+evaluation:
+  surge_quantile: 0.90    # onset = first hour smoothed rate > Q90 of incident rates
+  smooth_window: 6        # 6-hour moving average of the hostility rate

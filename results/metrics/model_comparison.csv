@@ -1,0 +1,7 @@
+n,accuracy,precision,recall,f1,macro_f1,roc_auc,average_precision,model,threshold,val_f1_at_threshold,seed,split,subset
+43887,0.7032,0.6285,0.6271,0.6278,0.6905,0.766,0.6807,TF-IDF + LogisticRegression,0.39999999999999997,0.5081,42,incident-level 70/15/15,
+33606,0.7274,0.6972,0.6407,0.6678,0.7183,0.7975,0.7365,TF-IDF + LogisticRegression,0.39999999999999997,,42,,test_unanimous
+43887,0.6978,0.6153,0.6479,0.6312,0.6876,0.7617,0.6772,TF-IDF + LinearSVM (calibrated),0.35,0.5074,42,incident-level 70/15/15,
+33606,0.7246,0.6839,0.6617,0.6726,0.7175,0.7934,0.7337,TF-IDF + LinearSVM (calibrated),0.35,,42,,test_unanimous
+8969,0.5565,0.4266,0.8309,0.5637,0.5563,0.6951,0.5265,TF-IDF + LogisticRegression,0.39999999999999997,,42,swsr_zero_shot,
+8969,0.5544,0.4261,0.8425,0.566,0.554,0.6928,0.5237,TF-IDF + LinearSVM (calibrated),0.35,,42,swsr_zero_shot,
